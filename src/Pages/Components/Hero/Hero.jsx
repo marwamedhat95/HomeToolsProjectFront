@@ -37,7 +37,7 @@ const fetchHero = async () => {
 };
 return (
 <div
-  className="w-full h-[400px] flex flex-col justify-center items-start p-8 text-white"
+  className="w-full heightHero flex flex-col justify-center items-start p-8 text-white"
   style={{
     backgroundImage: hero.background ? `url(${hero.background})` : undefined,
     backgroundSize: "cover",
@@ -46,8 +46,8 @@ return (
     backgroundColor: hero.background ? undefined : "#333",
   }}
 >
-  <h1 className="text-4xl font-bold mb-4">{hero.title}</h1>
-  <p className="text-lg mb-6">{hero.description}</p>
+  <h1 className="text-4xl font-bold mb-4 textHead">{hero.title}</h1>
+  <p className=" textp text-lg mb-6">{hero.description}</p>
   {hero.buttonText && (
     <a
       href={hero.buttonLink}
