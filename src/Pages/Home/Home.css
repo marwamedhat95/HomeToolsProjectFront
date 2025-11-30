@@ -1,59 +1,278 @@
-/* تنسيقات عامة لتنظيف الخلفية */
-body {
-    background-color: #F8F8F8; /* خلفية نظيفة */
+/* ----------------------------------------------------------------------- */
+/* متغيرات الألوان الجديدة: الكحلي والروز جولد */
+/* ----------------------------------------------------------------------- */
+:root {
+  /* الكحلي الداكن - للعناوين والنصوص والأزرار الأساسية */
+  --color-primary-navy: #1A2A44; 
+  /* الروز جولد - للحدود، الأيقونات، وعناصر التمييز (Accent) */
+  --color-accent-rosegold: #B76E79; 
+  /* اللون الفاتح للخلفية العامة */
+  --color-bg-light: #F8F8F8; 
 }
 
-/* 1. تخصيص نقاط التمرير (Dots) */
-.slick-dots {
-    bottom: -30px !important; /* مسافة من أسفل المنتج */
+/* تطبيق الخلفية الفاتحة على جسم الصفحة */
+.home-page-container {
+  background-color: var(--color-bg-light);
 }
 
-.slick-dots li button:before {
-    font-size: 10px;
-    color: #C2A878; /* لون النقطة غير النشطة */
-    opacity: 0.5;
+
+/* ----------------------------------------------------------------------- */
+/* تنسيق العناوين (Headers) - لتطبيق الكحلي والروز جولد على الحدود */
+/* ----------------------------------------------------------------------- */
+.home-header {
+  /* لون الخط الكحلي الداكن */
+  color: var(--color-primary-navy) !important; 
+  /* خط الحد الجانبي روز جولد */
+  border-right-color: var(--color-accent-rosegold) !important;
+  font-weight: 700; 
+  font-size: 1.875rem; 
+  letter-spacing: 0.05em; /* زيادة المسافة بين الأحرف للأناقة */
+  text-align: center;
+  margin: 0;
+  padding: 4rem 0 4rem 0;
 }
 
-.slick-dots li.slick-active button:before {
-    color: #C2A878; /* لون النقطة النشطة (اللون المميز) */
-    opacity: 1;
-}
 
-/* 2. تخصيص أسهم التنقل (Arrows) - ليتناسب مع التصميم العربي */
-.slick-prev:before,
-.slick-next:before {
+/* ----------------------------------------------------------------------- */
+/* تنسيق الأقسام والبطاقات */
+/* ----------------------------------------------------------------------- */
+
+/* بطاقة القسم: حدود روز جولد عند التمرير */
+.category-card {
+  border-color: transparent;
+  transition: all 0.3s ease;
+  border-radius: 0.75rem; 
+  position: relative;
+}
+.textPrice{
     font-size: 30px;
-    color: #333333; /* لون السهم */
-    opacity: 0.75;
+    color: #b66e79;
+}
+.btnPrice{
+    padding: 1rem 2rem;
+    margin: 15px;
+    border-radius: 8px;
+}
+.btnSli1{
+    border: 1px solid #ab6872;
+}
+.bordercat{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color:  color-mix(in oklab, var(--color-pink-500) 50%, #b66e79);
+}
+.textSlid1{
+    color: #b66e79;
+}
+.category-card:hover {
+  border-color: var(--color-accent-rosegold) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); 
+  transform: scale(1.03);
 }
 
-/* تعديل موقع الأسهم ليتناسب مع اتجاه RTL */
-.slick-prev {
-    left: -25px; /* السهم الأيسر (السابق) */
+/* أيقونات الأقسام: لون كحلي أساسي */
+.category-icon-default {
+  color: var(--color-primary-navy) !important; 
+  transition: color 0.3s;
+}
+/* أيقونات الأقسام: لون روز جولد عند التمرير */
+.category-card:hover .category-icon-default {
+  color: var(--color-accent-rosegold) !important; 
 }
 
-.slick-next {
-    right: -25px; /* السهم الأيمن (التالي) */
-}
 
-/* 3. تنسيق بطاقة المنتج داخل الـ Slider */
+/* تنسيق بطاقة المنتج (الجديدة) */
 .product-card {
-    border: 1px solid #E0E0E0; /* حدود خفيفة */
-    background-color: white;
+  border-color: transparent !important;
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  border-color: var(--color-accent-rosegold) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); 
+}
+
+/* سعر المنتج (غير العرض): روز جولد */
+.product-price {
+  color: var(--color-accent-rosegold) !important;
+}
+
+/* زر السلة: كحلي داكن */
+.cart-btn {
+  background-color: var(--color-primary-navy) !important;
+  transition: background-color 0.3s;
+}
+.cart-btn:hover {
+  background-color: var(--color-accent-rosegold) !important; /* روز جولد عند التمرير */
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* تنسيق الأزرار */
+/* ----------------------------------------------------------------------- */
+
+/* زر "عرض جميع أحدث المنتجات": كحلي */
+.all-products-btn {
+  background-color: var(--color-primary-navy) !important;
+  color: white !important;
+  transition: background-color 0.3s;
+border-radius: 8px !important ; 
+margin-top: 0 !important;
+}
+.all-products-btn:hover {
+  background-color: var(--color-accent-rosegold) !important;
+}
+.all-products-btns{
+      color: white !important;
+    transition: background-color 0.3s;
+    border-radius: 8px !important ; 
+    margin-top: 0 !important;
+}
+/* ----------------------------------------------------------------------- */
+/* تنسيق العروض (Friday Offers) */
+/* ----------------------------------------------------------------------- */
+
+/* شارة الخصم: روز جولد */
+.offer-badge {
+  background-color: var(--color-accent-rosegold) !important; 
+}
+/* حدود بطاقة العرض: روز جولد */
+.offer-card {
+  border-color: var(--color-accent-rosegold) !important;
+}
+/* سعر العرض: يبقى أحمر للفت الانتباه */
+.offer-price-final {
+  color: #E53E3E !important;
+}
+/* ألوان مخصصة إذا لم تكن معرفة في tailwind.config.js */
+:root {
+  --navy-blue: #2c3e50; /* لون أزرق داكن مقترح */
+  --rose-gold: #b66e79; /* لون الروز جولد الموجود */
+}
+
+/* تنسيقات Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 600px; /* أو أي ارتفاع مناسب */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-left-bg {
+    background-color: var(--navy-blue); /* لون خلفية الجزء الأيسر */
+    clip-path: polygon(0 0, 70% 0, 50% 100%, 0 100%); /* شكل مائل */
+    /* يمكن تعديل 70% و 50% لتغيير زاوية الميل وموقع التقاطع */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.hero-right-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%; /* العرض الذي ستشغله الصورة */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* تأكد من أن z-index أقل من المحتوى ليكون في الخلفية */
+}
+
+/* تنسيق الأيقونات داخل Hero */
+.hero-icons-container {
+    display: flex;
+    gap: 1.5rem; /* مسافة بين الأيقونات */
+}
+
+.hero-category-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 1rem;
-    border-radius: 0.75rem; /* rounded-xl */
+    border: 2px solid var(--rose-gold); /* إطار روز جولد */
+    border-radius: 50%; /* لجعلها دائرية */
+    width: 100px; /* حجم ثابت للايقونة الدائرية */
+    height: 100px;
     transition: all 0.3s ease-in-out;
 }
 
-.product-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل خفيف عند المرور */
-    border-color: #C2A878; /* إبراز باللون المميز */
+.hero-category-icon:hover {
+    background-color: var(--rose-gold); /* تغيير الخلفية عند التحويم */
+    transform: translateY(-5px);
 }
-.btn-flex{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.hero-category-icon:hover .text-rose-gold {
+    color: white; /* تغيير لون الأيقونة إلى الأبيض عند التحويم */
 }
-.text-4xl.font-bold.mb-4{
-    color: #fff;
+
+/* تنسيق النص */
+.hero-section h1 {
+    text-align: right; /* محاذاة النص لليمين */
 }
+
+.hero-section h1 .text-rose-gold {
+    color: var(--rose-gold);
+}
+.banner-container {
+    position: relative; /* مهم لاحتواء العنصر الأزرق المُطلق */
+    width: 100%;
+    overflow: hidden;
+}
+.textHead{
+    color: var(--color-accent-rosegold) !important;
+    font-weight: bold;
+    font-size: 55px;
+    width: 100%;
+    z-index: 999;
+    text-align: end;
+}
+.textp{
+    font-weight: bold;
+    width: 100%;
+    z-index: 999;
+    text-align: end;
+}
+.blue-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a2a44c7; /* اللون الأزرق الداكن */
+    z-index: 10; /* ليكون فوق صورة الخلفية */
+    
+    /* 🔑 الخاصية الأساسية: قص الشكل المائل */
+    /* النقاط بالترتيب: (أعلى يسار) -> (أسفل يسار) -> (أسفل يمين نقطة القطع) -> (أعلى يمين نقطة القطع) */
+    clip-path: polygon(
+        0% 0%, 
+        0% 100%, 
+        45% 100%, /* النقطة السفلية لانتهاء الميلان */
+        55% 0%    /* النقطة العلوية لبدء الميلان */
+    );
+    /* يمكنك تعديل قيم 45% و 55% لتغيير درجة الميلان وزاوية القطع */
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.heightHero{
+    height: 60vh;
+}
+.heightcat{
+    height: calc(var(--spacing) * 100);
+}
+.sale{
+    background-color: #b66e79;
+}
+
