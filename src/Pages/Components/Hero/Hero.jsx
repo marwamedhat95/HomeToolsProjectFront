@@ -19,7 +19,7 @@ fetchHero();
 
 const fetchHero = async () => {
   try {
-    const res = await axios.get("https://hometoolsprojectbackendd-production.up.railway.app/api/hero");
+    const res = await axios.get("http://localhost:5000/api/hero");
     console.log("Response from API:", res.data); // هنا نتأكد من البيانات
     const data = res.data || {};
     setHero({
