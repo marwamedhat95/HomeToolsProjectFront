@@ -13,3 +13,7 @@
         }
     }
 }
+.nav.bg-white {
+    background-color: var(--color-white);
+    z-index: 999;
+}
