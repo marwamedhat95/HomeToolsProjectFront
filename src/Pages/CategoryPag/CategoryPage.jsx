@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import 'CategoryPage.css';
+import './CategoryPage.css';
 export default function CategoryPage() {
 const { id } = useParams();
 const navigate = useNavigate();

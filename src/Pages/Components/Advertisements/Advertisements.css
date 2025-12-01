@@ -1,5 +1,5 @@
 .add img{
-    height: 15vh;
+    height: 30vh;
 }
 .add{
         display: flex;
@@ -9,6 +9,7 @@
 
 @media(max-width:991px){
   .add{
+
         display: block;
 }
 }
