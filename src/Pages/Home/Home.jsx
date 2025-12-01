@@ -89,107 +89,104 @@ export default function Home() {
         <div className="blue-overlay"></div>
       </div>
      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold my-8 text-right pr-3 home-header">
-          تسوق حسب الأقسام
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-12">
-          {categories.map(cat => (
-            <div
-              key={cat._id}
-              onClick={() => navigate(`/category/${cat._id}`)}
-              className="bg-white cursor-pointer border-2 border-transparent rounded-xl p-4 text-center shadow-sm category-card transition-all duration-300 transform hover:scale-105"
-            >
-              <img
-                src={getCategoryImage(cat.name)}
-                alt={cat.name}
-                className="w-full heightcat object-cover rounded-xl mb-2 "
-              />
-              <div className="
-                absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-md 
-                border-2  bordercat
-              ">
-                {getCategoryIcon(cat.name)}
-              </div>
-              <p className="font-semibold text-lg text-gray-800">{cat.name}</p>
-            </div>
-          ))}
+     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  <h2 className="text-3xl sm:text-4xl font-extrabold my-8 text-right pr-3 home-header">
+    تسوق حسب الأقسام
+  </h2>
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-12">
+    {categories.map(cat => (
+      <div
+        key={cat._id}
+        onClick={() => navigate(`/category/${cat._id}`)}
+        className="bg-white cursor-pointer border-2 border-transparent rounded-xl p-3 sm:p-4 text-center shadow-sm category-card transition-all duration-300 transform hover:scale-105"
+      >
+        <div className="relative">
+          <img
+            src={getCategoryImage(cat.name)}
+            alt={cat.name}
+            className="w-full h-32 sm:h-36 md:h-40 lg:h-48 object-cover rounded-xl mb-2"
+          />
+          <div className="
+            absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-3 sm:p-4 shadow-md border-2 bordercat
+          ">
+            {getCategoryIcon(cat.name)}
+          </div>
         </div>
+        <p className="font-semibold text-base sm:text-lg md:text-xl text-gray-800">{cat.name}</p>
       </div>
-
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-    {/* عنوان القسم */}
-    <h2 className="text-3xl font-extrabold my-8 text-center home-header">
-        تسوق حسب السعر
-    </h2>
-    
-    {/* شبكة البطاقات: لعرض 3 بطاقات في كل صف على الشاشات الكبيرة */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 mb-12 justify-center">
-        {[
-            // تم تحديث النصوص لتتناسب مع الصورة بشكل أفضل، خاصة العنصر الأول
-            { price: 100, label: "أقل من 100 جنيه" }, // النص باللغة العربية
-            { price: 200, label: "أقل من 200 جنيه" },
-            { price: 500, label: "أقل من 500 جنيه" },
-            { price: 1000, label: "أقل من 1000 جنيه"},
-            { price: 2000, label: "أقل من 2000 جنيه" },
-            { price: 3000, label: "أقل من 3000 جنيه" },
-        ].map((item, i) => (
-            <div
-                key={i}
-                onClick={() => window.location.href = `/price/${item.price}`}
-                // البطاقة الرئيسية: خلفية بيضاء، حواف مستديرة، ظل كبير، والآن مع تأثير التكبير hover:scale-105
-                className="
-                    relative 
-                    cursor-pointer 
-                    bg-white 
-                    rounded-xl 
-                    shadow-xl 
-                    hover:shadow-2xl 
-                    transition-all 
-                    duration-300
-                    hover:scale-[1.03]  
-                    p-6 
-                    flex 
-                    flex-col 
-                    items-center 
-                    justify-center 
-                    min-h-[200px]  /* زيادة الارتفاع ليتناسب مع شكل الصورة */
-                "
-            >
-                
-                {/* النص العلوي (Up To X AED) */}
-                {/* تم تعديل الخط واللون ليتناسب مع الصورة المرفقة، مع لون مختلف لأول بطاقة */}
-                <div className={`
-                    text-lg sm:text-xl font-bold mb-6 text-center tracking-wide  textPrice
-                    ${i === 0 ? 'text-red-600' : 'text-gray-800'}
-                `}>
-                    {/* استخدام item.label لتمكين النصوص المخصصة مثل "أقل من 100 جنيه" */}
-                    {item.label} 
-                </div>
-
-                {/* زر SHOP NOW */}
-                <button 
-                    className="
-                        bg-[#1a2a44] 
-                        text-white 
-                        font-bold 
-                        py-2 
-                        px-6 
-                        rounded 
-                        uppercase 
-                        text-sm 
-                        tracking-wider 
-                        hover:bg-[#34495e] 
-                        transition-colors
-                        btnPrice
-                    "
-                >
-                    SHOP NOW
-                </button>
-            </div>
-        ))}
-    </div>
+    ))}
+  </div>
 </div>
+
+
+<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  {/* عنوان القسم */}
+  <h2 className="text-3xl sm:text-4xl font-extrabold my-8 text-center home-header">
+      تسوق حسب السعر
+  </h2>
+  
+  {/* شبكة البطاقات */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-12 justify-center">
+      {[
+          { price: 100, label: "أقل من 100 جنيه" },
+          { price: 200, label: "أقل من 200 جنيه" },
+          { price: 500, label: "أقل من 500 جنيه" },
+          { price: 1000, label: "أقل من 1000 جنيه"},
+          { price: 2000, label: "أقل من 2000 جنيه" },
+          { price: 3000, label: "أقل من 3000 جنيه" },
+      ].map((item, i) => (
+          <div
+              key={i}
+              onClick={() => window.location.href = `/price/${item.price}`}
+              className="
+                  relative 
+                  cursor-pointer 
+                  bg-white 
+                  rounded-xl 
+                  shadow-xl 
+                  hover:shadow-2xl 
+                  transition-all 
+                  duration-300
+                  hover:scale-[1.03]  
+                  p-4 sm:p-6 
+                  flex 
+                  flex-col 
+                  items-center 
+                  justify-center 
+                  min-h-[180px] sm:min-h-[200px] md:min-h-[220px]
+              "
+          >
+              {/* النص العلوي */}
+              <div className={`
+                  text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 text-center tracking-wide textPrice
+                  ${i === 0 ? 'text-red-600' : 'text-gray-800'}
+              `}>
+                  {item.label} 
+              </div>
+
+              {/* زر SHOP NOW */}
+              <button 
+                  className="
+                      bg-[#1a2a44] 
+                      text-white 
+                      font-bold 
+                      py-2 px-4 sm:py-2 sm:px-6 
+                      rounded 
+                      uppercase 
+                      text-sm sm:text-base 
+                      tracking-wider 
+                      hover:bg-[#34495e] 
+                      transition-colors
+                      btnPrice
+                  "
+              >
+                  SHOP NOW
+              </button>
+          </div>
+      ))}
+  </div>
+</div>
+
 
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
     <div className="btn-flex">
