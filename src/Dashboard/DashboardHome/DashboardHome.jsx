@@ -23,12 +23,12 @@ export default function DashboardHome() {
       const res = await axios.get("https://hometoolsprojectbackendd-production.up.railway.app/api/hero");
       setHero({
         ...hero,
-        title: res.data.title,
-        description: res.data.description,
-        buttonText: res.data.buttonText,
-        buttonLink: res.data.buttonLink,
-        currentBackground: res.data.background,
-      });
+  title: res.data.title,
+  description: res.data.description,
+  buttonText: res.data.buttonText,
+  buttonLink: res.data.buttonLink,
+  currentBackground: res.data.background, // اللينك الجديد من Cloudinary
+});
     } catch (err) {
       console.error(err);
     }
@@ -244,11 +244,11 @@ export default function DashboardHome() {
 
           <label className="image-label">صورة الخلفية الحالية:</label>
           {hero.currentBackground && (
-            <img 
-              src={`https://hometoolsprojectbackendd-production.up.railway.app/api/uploads/${hero.currentBackground}`} 
-              className="hero-current-image" 
-              alt="Current Hero Background"
-            />
+             <img 
+        src={hero.currentBackground} 
+        className="hero-current-image" 
+        alt="Current Hero Background"
+      />
           )}
 
           <input
