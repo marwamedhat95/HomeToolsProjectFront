@@ -49,7 +49,7 @@ const handleSubmits = async (e) => {
     imageData.append("image", hero.background);
 
     const uploadRes = await fetch(
-      "https://hometoolsprojectbackendd-production.up.railway.app/api/upload",
+      "https://hometoolsprojectbackendd-production.up.railway.app/upload",
       { method: "POST", body: imageData }
     );
     const uploadData = await uploadRes.json(); // 🟢 هنا بعد الرفع
@@ -168,7 +168,7 @@ const handleSubmits = async (e) => {
       imageData.append("image", files[i]);
 
       const uploadRes = await fetch(
-        "https://hometoolsprojectbackendd-production.up.railway.app/api/upload",
+        "https://hometoolsprojectbackendd-production.up.railway.app/upload",
         { method: "POST", body: imageData }
       );
       const uploadData = await uploadRes.json();
