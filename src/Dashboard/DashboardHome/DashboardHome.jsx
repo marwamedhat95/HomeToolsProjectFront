@@ -44,21 +44,19 @@ const handleSubmits = async (e) => {
   formData.append("buttonLink", hero.buttonLink);
 
   // رفع الصورة على Cloudinary
-  if (hero.background) {
+ if (hero.background) {
     const imageData = new FormData();
     imageData.append("image", hero.background);
-    formData.append("background", hero.background);
 
     const uploadRes = await fetch(
       "https://hometoolsprojectbackendd-production.up.railway.app/api/upload",
       { method: "POST", body: imageData }
     );
-    const uploadData = await uploadRes.json();
+    const uploadData = await uploadRes.json(); // 🟢 هنا بعد الرفع
 
-    // اضيفي الرابط للـ FormData عوضًا عن الملف نفسه
-    formData.append("background", uploadData.url);
-  }
-
+    formData.append("background", uploadData.url); // 🟢 هنا بعد ما uploadData متعرف
+}
+  
   try {
     await axios.put("https://hometoolsprojectbackendd-production.up.railway.app/api/hero", formData);
     showPopups("تم تحديث الـ Hero بنجاح");
@@ -176,7 +174,6 @@ const handleSubmits = async (e) => {
       const uploadData = await uploadRes.json();
       uploadedImages.push(uploadData.url);
     }
-
     // جهزي FormData للمنتج مع روابط الصور
     const formData = new FormData();
     formData.append("name", form.name);
@@ -268,7 +265,7 @@ const handleSubmits = async (e) => {
           <label className="image-label">صورة الخلفية الحالية:</label>
           {hero.currentBackground && (
             <img 
-              src={`https://hometoolsprojectbackendd-production.up.railway.app/uploads/${hero.currentBackground}`} 
+              src={hero.currentBackground}
               className="hero-current-image" 
               alt="Current Hero Background"
             />
@@ -543,7 +540,7 @@ const handleSubmits = async (e) => {
                     {p.images?.map((img, index) => (
                         <img
                             key={index}
-                            src={`https://hometoolsprojectbackendd-production.up.railway.app/uploads/${img}`}
+                            src={img}
                             alt="product"
                             className="product-thumb"
                         />
@@ -666,7 +663,7 @@ const handleSubmits = async (e) => {
                     {p.images?.map((img, index) => (
                         <img
                             key={index}
-                            src={`https://hometoolsprojectbackendd-production.up.railway.app/uploads/${img}`}
+                            src={img}
                             alt="product"
                             className="product-thumb"
                         />
