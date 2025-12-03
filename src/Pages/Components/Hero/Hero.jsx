@@ -27,9 +27,7 @@ const fetchHero = async () => {
       description: data.description || "",
       buttonText: data.buttonText || "",
       buttonLink: data.buttonLink || "#",
-      background: data.background
-        ? `https://hometoolsprojectbackendd-production.up.railway.app/uploads/${encodeURIComponent(data.background)}`
-        : "",
+      background: data.background || "",
     });
   } catch (err) {
     console.error("حدث خطأ أثناء جلب بيانات الهيرو:", err);
