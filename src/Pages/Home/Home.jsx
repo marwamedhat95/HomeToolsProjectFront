@@ -340,7 +340,6 @@ export default function Home() {
                             alt={p.name} 
                             className="product-thumb"
                             />
-
                     </div>
 
                     {/* محتوى البطاقة (العنوان، السعر، الزر) */}
