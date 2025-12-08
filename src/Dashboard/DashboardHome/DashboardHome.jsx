@@ -23,39 +23,45 @@ export default function DashboardHome() {
       const res = await axios.get("https://hometoolsprojectbackendd-production.up.railway.app/api/hero");
       setHero({
         ...hero,
-  title: res.data.title,
-  description: res.data.description,
-  buttonText: res.data.buttonText,
-  buttonLink: res.data.buttonLink,
-  currentBackground: res.data.background, // اللينك الجديد من Cloudinary
-});
+        title: res.data.title,
+        description: res.data.description,
+        buttonText: res.data.buttonText,
+        buttonLink: res.data.buttonLink,
+        currentBackground: res.data.background,
+      });
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleSubmits = async (e) => {
-    e.preventDefault();
+const handleSubmits = async (e) => {
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("title", hero.title);
-    formData.append("description", hero.description);
-    formData.append("buttonText", hero.buttonText);
-    formData.append("buttonLink", hero.buttonLink);
+  try {
+    const res = await axios.put(
+      "https://hometoolsprojectbackendd-production.up.railway.app/api/hero",
+      {
+        title: hero.title,
+        description: hero.description,
+        buttonText: hero.buttonText,
+        buttonLink: hero.buttonLink,
+        background: hero.background,
+      }
+    );
 
-    if (hero.background) {
-      formData.append("background", hero.background);
-    }
+    setHero(prev => ({
+      ...prev,
+      ...res.data // تحديث الـ state من الـ API مباشرة
+    }));
 
-    try {
-      await axios.put("https://hometoolsprojectbackendd-production.up.railway.app/api/hero", formData);
-      showPopups("تم تحديث الـ Hero بنجاح");
-      fetchHero();
-    } catch (err) {
-      console.error(err);
-      showPopups("حدث خطأ أثناء التحديث", "error");
-    }
-  };
+    showPopups("تم تحديث الـ Hero بنجاح");
+  } catch (err) {
+    console.error(err);
+    showPopups("حدث خطأ أثناء التحديث", "error");
+  }
+};
+
+
 
   // ---------------- POPUP STATE ----------------
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
@@ -197,6 +203,27 @@ export default function DashboardHome() {
   // ---------------- UPDATE PRODUCT (Helper function is removed, logic embedded) ----------------
   // تم إزالة دالة updateProduct، المنطق موجود مباشرة في زر الحفظ
 
+const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "react_upload"); // الاسم اللي عملتيه في Cloudinary
+
+  try {
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dkhjcwrlw/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await res.json();
+    console.log("Uploaded image URL:", data.secure_url);
+    return data.secure_url;
+  } catch (err) {
+    console.error("Upload error:", err);
+  }
+};
+
   return (
     <div className="dashboard-page">
       {/* ----------------- POPUP (Hero) ----------------- */}
@@ -243,19 +270,20 @@ export default function DashboardHome() {
           />
 
           <label className="image-label">صورة الخلفية الحالية:</label>
-          {hero.currentBackground && (
-             <img 
-        src={hero.currentBackground} 
-        className="hero-current-image" 
-        alt="Current Hero Background"
-      />
-          )}
+   {hero.background && (
+  <img src={hero.background} className="hero-current-image" alt="Current Hero Background" />
+)}
 
-          <input
-            type="file"
-            className="file-input"
-            onChange={(e) => setHero({ ...hero, background: e.target.files[0] })}
-          />
+
+<input
+  type="file"
+  className="file-input"
+  onChange={async (e) => {
+    const file = e.target.files[0];
+    const url = await uploadImage(file); // هترفع على Cloudinary
+    setHero(prev => ({ ...prev, background: url })); // رابط كامل من Cloudinary
+  }}
+/>
 
           <button className="primary-button hero-save-button">حفظ التغييرات</button>
         </form>
@@ -520,7 +548,7 @@ export default function DashboardHome() {
                     {p.images?.map((img, index) => (
                         <img
                             key={index}
-                            src={`https://hometoolsprojectbackendd-production.up.railway.app/api/uploads/${img}`}
+                            src={`https://hometoolsprojectbackendd-production.up.railway.app/uploads/${img}`}
                             alt="product"
                             className="product-thumb"
                         />
@@ -643,7 +671,7 @@ export default function DashboardHome() {
                     {p.images?.map((img, index) => (
                         <img
                             key={index}
-                            src={`https://hometoolsprojectbackendd-production.up.railway.app/api/uploads/${img}`}
+                            src={`https://hometoolsprojectbackendd-production.up.railway.app/uploads/${img}`}
                             alt="product"
                             className="product-thumb"
                         />
